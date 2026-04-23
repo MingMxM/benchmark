@@ -114,7 +114,7 @@
   []
   [definition]
     type = GeochemicalModelDefinition
-    database_file = "../../database/moose_geochemdb.json"
+    database_file = "../../../database/moose_geochemdb.json"
     basis_species = "H2O H+ Ca++ Mg++ SiO2(aq) HCO3-"
     equilibrium_gases = "CO2(g)"
     kinetic_minerals = "Diopside Calcite Magnesite"
