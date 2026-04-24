@@ -2,8 +2,8 @@
   [gen]
     type = GeneratedMeshGenerator
     dim = 2
-    nx = 14
-    ny = 8
+    nx = 56
+    ny = 16
     xmin = -70
     xmax = 70
     ymin = -40
