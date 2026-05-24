@@ -1,5 +1,5 @@
 # CO2-pure water equilibrium at 10 MPa and 100 C
-# CO2 fugacity at 100 C and 100 bar is around 65 bae (phi = 0.66)
+# CO2 fugacity at 100 C and 100 bar is around 65 bar (phi = 0.66)
 # log10(65) = 1.81
 
 [UserObjects]
