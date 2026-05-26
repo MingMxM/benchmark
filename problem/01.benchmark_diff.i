@@ -125,7 +125,7 @@
     []
     [diffusion_coefficient]
         type = PorousFlowDiffusivityConst
-        diffusion_coeff = '1e-9 1e-9'
+        diffusion_coeff = '7.5e-9 7.5e-9'
         tortuosity = 1
     []
     [relp]
@@ -154,9 +154,9 @@
 [Executioner]
   type = Transient
   solve_type = Newton
-  end_time = 1E6
-  dt = 1E5
-  nl_rel_tol = 1E-8
+  end_time = 2.419e6   # ~28 days in seconds (100 days = 8.64e6)
+  dt = 8.64e4          # 1 day in seconds
+  nl_rel_tol = 1e-8
 []
 
 [Outputs]
