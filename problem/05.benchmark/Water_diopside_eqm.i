@@ -1,6 +1,5 @@
 # Diopside (CaMgSi2O6) - dilute NaCl water equilibrium at 100 C, 1 bar
 # System: 1 kg water + 6.776 mol diopside (7:3 water:rock volume ratio)
-# Trace NaCl (1E-4 molal) added so an explicit anion (Cl-) is in the basis.
 # Reaction: CaMgSi2O6 + 4 H+ = Ca^2+ + Mg^2+ + 2 SiO2(aq) + 2 H2O
 
 [UserObjects]
@@ -8,20 +7,23 @@
         type = GeochemicalModelDefinition
         database_file = "../../database/moose_geochemdb.json"
         basis_species = "H2O H+ Ca++ Mg++ SiO2(aq) HCO3-"
-        equilibrium_minerals = "Diopside"
+        equilibrium_minerals = "Diopside Calcite Magnesite"
+        equilibrium_gases = "CO2(g)"
     []
 []
 
 [TimeIndependentReactionSolver]
     model_definition = definition
     geochemistry_reactor_name = reactor
-    swap_out_of_basis = "Ca++"
-    swap_into_basis = "Diopside"
-    charge_balance_species = "HCO3-"
-    constraint_species = "H2O              Diopside     H+               Mg++             SiO2(aq)         HCO3-"
-    constraint_value = "  1.0              6.776        1E-7             1E-8             1E-8             1E-3"
-    constraint_meaning = "kg_solvent_water free_mineral bulk_composition bulk_composition bulk_composition bulk_composition"
-    constraint_unit = "   kg               moles        moles            moles            moles            moles"
+    swap_out_of_basis = "Ca++ HCO3-"
+    swap_into_basis = "Diopside CO2(g)"
+    charge_balance_species = "H+"
+    constraint_species = "H2O              Diopside     CO2(g)        Mg++             SiO2(aq)         H+"
+    constraint_value = "  1.0              6.776        4E-3          1E-8             1E-8             1E-7"
+    constraint_meaning = "kg_solvent_water free_mineral fugacity      bulk_composition bulk_composition bulk_composition"
+    constraint_unit = "   kg               moles        dimensionless moles            moles            moles"
+    prevent_precipitation = "Calcite Magnesite"
+    ramp_max_ionic_strength_initial = 0
     temperature = 100
     # execute_console_output_on = ''
 []
@@ -156,6 +158,10 @@
     type = PointValue
     point = '0 0 0'
     variable = pH
+  []
+  [kg_solvent_water]
+    type = PointValue
+    variable = kg_solvent_H2O
   []
   [molal_OH]
     type = PointValue

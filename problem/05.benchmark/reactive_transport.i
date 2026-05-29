@@ -1,7 +1,7 @@
 # Multicomponent diffusion in fractured basalt
 # CO2-rich water diffuses from inlet (left) into fracture/matrix
-# 6 fluid components: H2O + HCO3- + Ca++ + Mg++ + SiO2(aq) + H+
-# 5 primary variables (N-1), H2O is implicit
+# 10 fluid components: H2O + HCO3- + Ca++ + Mg++ + Fe++ + SiO2(aq) + Al+++ + Na+ + K+ + H+
+# 9 primary variables (N-1), H2O is implicit
 # Diffusion coefficient = 7.5e-9 m2/s at 100C (Xiong et al. 2017)
 
 [Mesh]
@@ -24,20 +24,39 @@
 []
 
 [Variables]
-  [massfrac_HCO3]
+  [f_HCO3]
+    initial_condition = 4.520878e-05
   []
-  [massfrac_Ca]
+  [f_Ca]
+    initial_condition = 7.382446e-06
   []
-  [massfrac_Mg]
+  [f_Mg]
+    initial_condition = 4.475813e-06
   []
-  [massfrac_SiO2]
+  [f_SiO2]
+    initial_condition = 2.213589e-05
   []
-  [massfrac_H]
+  [f_H]
+    initial_condition = 4.246917e-09
   []
 []
 
 [AuxVariables]
   [pressure]
+    initial_condition = 1e7   # 10 MPa
+  []
+
+  [rate_H2O]
+  []
+  [rate_HCO3]
+  []
+  [rate_Ca]
+  []
+  [rate_Mg]
+  []
+  [rate_SiO2]
+  []
+  [rate_H]
   []
 []
 
@@ -46,7 +65,7 @@
     type = PorousFlowDictator
     number_fluid_components = 6
     number_fluid_phases = 1
-    porous_flow_vars = 'massfrac_HCO3 massfrac_Ca massfrac_Mg massfrac_SiO2 massfrac_H'
+    porous_flow_vars = 'f_HCO3 f_Ca f_Mg f_SiO2 f_H'
   []
 []
 
@@ -55,99 +74,71 @@
   [mass_HCO3]
     type = PorousFlowMassTimeDerivative
     fluid_component = 0
-    variable = massfrac_HCO3
+    variable = f_HCO3
+    save_in = rate_HCO3
   []
   [diff_HCO3]
     type = PorousFlowDispersiveFlux
     fluid_component = 0
     disp_long = 0
     disp_trans = 0
-    variable = massfrac_HCO3
+    variable = f_HCO3
   []
   # Ca++
   [mass_Ca]
     type = PorousFlowMassTimeDerivative
     fluid_component = 1
-    variable = massfrac_Ca
+    variable = f_Ca
+    save_in = rate_Ca
   []
   [diff_Ca]
     type = PorousFlowDispersiveFlux
     fluid_component = 1
     disp_long = 0
     disp_trans = 0
-    variable = massfrac_Ca
+    variable = f_Ca
   []
   # Mg++
   [mass_Mg]
     type = PorousFlowMassTimeDerivative
     fluid_component = 2
-    variable = massfrac_Mg
+    variable = f_Mg
+    save_in = rate_Mg
   []
   [diff_Mg]
     type = PorousFlowDispersiveFlux
     fluid_component = 2
     disp_long = 0
     disp_trans = 0
-    variable = massfrac_Mg
+    variable = f_Mg
   []
   # SiO2(aq)
   [mass_SiO2]
     type = PorousFlowMassTimeDerivative
     fluid_component = 3
-    variable = massfrac_SiO2
+    variable = f_SiO2
+    save_in = rate_SiO2
   []
   [diff_SiO2]
     type = PorousFlowDispersiveFlux
     fluid_component = 3
     disp_long = 0
     disp_trans = 0
-    variable = massfrac_SiO2
+    variable = f_SiO2
   []
   # H+
   [mass_H]
     type = PorousFlowMassTimeDerivative
     fluid_component = 4
-    variable = massfrac_H
+    variable = f_H
+    save_in = rate_H
   []
   [diff_H]
     type = PorousFlowDispersiveFlux
     fluid_component = 4
     disp_long = 0
     disp_trans = 0
-    variable = massfrac_H
-  []
-[]
-
-[ICs]
-  [initial_pressure]
-    type = ConstantIC
-    value = 1e7
-    variable = pressure
-  []
-  [initial_concentration_HCO3]
-    type = ConstantIC
-    value = 1e-10
-    variable = massfrac_HCO3
-  []
-  [initial_concentration_Ca]
-    type = ConstantIC
-    value = 1e-10
-    variable = massfrac_Ca
-  []
-  [initial_concentration_Mg]
-    type = ConstantIC
-    value = 1e-10
-    variable = massfrac_Mg
-  []
-  [initial_concentration_SiO2]
-    type = ConstantIC
-    value = 1e-10
-    variable = massfrac_SiO2
-  []
-  [initial_concentration_H]
-    type = ConstantIC
-    value = 1e-10
-    variable = massfrac_H
+    variable = f_H
   []
 []
 
@@ -157,32 +148,32 @@
   [inlet_HCO3]
     type = DirichletBC
     boundary = inlet
-    variable = massfrac_HCO3
-    value = 0.05       # high HCO3- for CO2-rich water
+    variable = f_HCO3
+    value = 0.0423       # high HCO3- for CO2-rich water
   []
   [inlet_Ca]
     type = DirichletBC
     boundary = inlet
-    variable = massfrac_Ca
-    value = 1e-10
+    variable = f_Ca
+    value = 7.382446e-06
   []
   [inlet_Mg]
     type = DirichletBC
     boundary = inlet
-    variable = massfrac_Mg
-    value = 1e-10
+    variable = f_Mg
+    value = 4.475813e-06
   []
   [inlet_SiO2]
     type = DirichletBC
     boundary = inlet
-    variable = massfrac_SiO2
-    value = 1e-10
+    variable = f_SiO2
+    value = 2.213589e-05
   []
   [inlet_H]
     type = DirichletBC
     boundary = inlet
-    variable = massfrac_H
-    value = 0.05      # high H+ for CO2-rich water (low pH)
+    variable = f_H
+    value = 0.0007      # high H+ for CO2-rich water (low pH)
   []
 []
 
@@ -226,7 +217,7 @@
   []
   [massfrac]
     type = PorousFlowMassFraction
-    mass_fraction_vars = 'massfrac_HCO3 massfrac_Ca massfrac_Mg massfrac_SiO2 massfrac_H'
+    mass_fraction_vars = 'f_HCO3 f_Ca f_Mg f_SiO2 f_H'
   []
   [simple_fluid]
     type = PorousFlowSingleComponentFluid
@@ -236,7 +227,7 @@
   [diffusion_coefficient]
     type = PorousFlowDiffusivityConst
     # 7.5e-9 m2/s for all 6 components (5 solutes + H2O)
-    diffusion_coeff = '7.5e-9 7.5e-9 7.5e-9 7.5e-9 7.5e-9 7.5e-9 '
+    diffusion_coeff = '7.5e-9 7.5e-9 7.5e-9 7.5e-9 7.5e-9 7.5e-9'
     tortuosity = 1
   []
   [relp]
@@ -265,11 +256,40 @@
 [Executioner]
   type = Transient
   solve_type = Newton
-  end_time = 2.419e6   # ~28 days in seconds (100 days = 8.64e6)
-  dt = 8.64e4          # 1 day in seconds
-  nl_rel_tol = 1e-8
+  end_time = 8e5    # ~28 days in seconds (100 days = 8.64e6)
+  
+  [TimeStepper]
+    type = SolutionTimeAdaptiveDT
+    dt = 500
+  []
+
+  # dt = 8.64e4          # 1 day in seconds
+  nl_rel_tol = 1e-7
 []
 
 [Outputs]
   exodus = true
+[]
+
+[MultiApps]
+  [react]
+    type = TransientMultiApp
+    input_files = water_geochemistry.i
+    clone_master_mesh = true
+    execute_on = 'timestep_end'
+  []
+[]
+[Transfers]
+  [changes_due_to_flow]
+    type = MultiAppCopyTransfer
+    source_variable = 'rate_H2O rate_HCO3 rate_Ca rate_Mg rate_SiO2 rate_H'
+    variable = 'pf_rate_H2O pf_rate_HCO3 pf_rate_Ca pf_rate_Mg pf_rate_SiO2 pf_rate_H'
+    to_multi_app = react
+  []
+  [massfrac_from_geochem]
+    type = MultiAppCopyTransfer
+    source_variable = 'massfrac_HCO3 massfrac_Ca massfrac_Mg massfrac_SiO2 massfrac_H'
+    variable = 'f_HCO3 f_Ca f_Mg f_SiO2 f_H'
+    from_multi_app = react
+  []
 []

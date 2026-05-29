@@ -5,7 +5,7 @@
   swap_into_basis = "CO2(g)"
   charge_balance_species = "HCO3-"
   constraint_species = "H2O              CO2(g)        Ca++               Mg++               SiO2(aq)           HCO3-"
-  constraint_value = "  1.0              100           1E-6               1E-6               1E-6               0"
+  constraint_value = "  1.0              100           1E-6               1E-6               1E-6               1E-7"
   constraint_meaning = "kg_solvent_water fugacity      free_concentration free_concentration free_concentration bulk_composition"
   constraint_unit = "   kg               dimensionless molal              molal              molal              moles"
   temperature = 100

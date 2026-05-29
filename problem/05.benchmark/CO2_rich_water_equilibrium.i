@@ -14,10 +14,10 @@
 [TimeIndependentReactionSolver]
     model_definition = definition
     geochemistry_reactor_name = reactor
-    swap_out_of_basis = "H+"
+    swap_out_of_basis = "HCO3-"
     swap_into_basis = "CO2(g)"
-    charge_balance_species = "HCO3-"
-    constraint_species = "H2O              CO2(g)        HCO3-"
+    charge_balance_species = "H+"
+    constraint_species = "H2O              CO2(g)        H+"
     constraint_value = "  1.0              1.81          1E-6"
     constraint_meaning = "kg_solvent_water log10fugacity bulk_composition"
     constraint_unit = "   kg               dimensionless moles"
