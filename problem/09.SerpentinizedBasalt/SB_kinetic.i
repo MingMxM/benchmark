@@ -4,6 +4,18 @@
 # Diopside dissolves; Calcite and Magnesite may precipitate as secondary phases
 
 [UserObjects]
+    [albite_acid]
+        type = GeochemistryKineticRate
+        kinetic_species_name = Albite
+        intrinsic_rate_constant = 1.380e-9     # 10^-8.86 mol/m^2/s at 25 C
+        activation_energy = 67.78E3             # J/mol
+        area_quantity = 0.0225                 # m^2/g
+        multiply_by_mass = true
+        promoting_species_names = "H+"
+        promoting_indices = "0.5"
+        one_over_T0 = 0.003354
+    []
+  
     [diopside_acid]
         type = GeochemistryKineticRate
         kinetic_species_name = Diopside
@@ -43,10 +55,10 @@
     [definition]
         type = GeochemicalModelDefinition
         database_file = "../../database/moose_geochemdb.json"
-        basis_species = "H2O H+ Ca++ Mg++ SiO2(aq) HCO3-"
-        kinetic_minerals = "Diopside Calcite Magnesite"
+        basis_species = "H2O H+ Na+ Ca++ Mg++ Al+++ SiO2(aq) HCO3-"
+        kinetic_minerals = "Albite Diopside Calcite Magnesite"
         equilibrium_gases = "CO2(g)"
-        kinetic_rate_descriptions = "diopside_acid calcite_acid magnesite_acid"
+        kinetic_rate_descriptions = "albite_acid diopside_acid calcite_acid magnesite_acid"
     []
   []
 
@@ -56,15 +68,15 @@
     swap_out_of_basis = "HCO3-"
     swap_into_basis = "CO2(g)"
     charge_balance_species = "H+"
-    constraint_species = "H2O              Ca++               CO2(g)        Mg++               SiO2(aq)           H+"
-    constraint_value = "  1.0              1.787217e-04       72            1.792424e-04       3.589915e-04       4.213e-06"
-    constraint_meaning = "kg_solvent_water free_concentration fugacity      free_concentration free_concentration bulk_composition"
-    constraint_unit = "   kg               molal              dimensionless molal              molal              moles"
+    constraint_species = "H2O              Na+              Ca++               CO2(g)        Mg++               Al+++              SiO2(aq)           H+"
+    constraint_value = "  1.0              0.1              1.787217e-04       72            1.792424e-04       1E-9               3.589915e-04       1E-6"
+    constraint_meaning = "kg_solvent_water bulk_composition free_concentration fugacity      free_concentration free_concentration free_concentration bulk_composition"
+    constraint_unit = "   kg               moles            molal              dimensionless molal              molal              molal              moles"
     initial_temperature = 100
     temperature = 100
-    kinetic_species_name = '         Diopside Calcite Magnesite'
-    kinetic_species_initial_value = '6.776    0.001   0.001'
-    kinetic_species_unit = '         moles    moles   moles'
+    kinetic_species_name = '         Albite Diopside Calcite Magnesite'
+    kinetic_species_initial_value = '0.7709 1.038    0.001   0.001'
+    kinetic_species_unit = '         moles  moles    moles   moles'
     ramp_max_ionic_strength_initial = 0
     evaluate_kinetic_rates_always = true # implicit time-marching used for stability
     execute_console_output_on = '' # only CSV output used in this example
