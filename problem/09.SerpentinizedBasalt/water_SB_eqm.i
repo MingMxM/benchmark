@@ -7,19 +7,23 @@
         type = GeochemicalModelDefinition
         database_file = "../../database/moose_geochemdb.json"
         basis_species = "H2O H+ Na+ K+ Ca++ Mg++ Fe++ Al+++ SiO2(aq) HCO3-"
-        equilibrium_minerals = "Anorthite K-feldspar Albite Diopside Hedenbergite Greenalite Antigorite Calcite Magnesite Amrph^silica"
+        remove_all_extrapolated_secondary_species = true
+        equilibrium_minerals = "Anorthite K-feldspar Albite Diopside Hedenbergite Greenalite Antigorite Calcite Magnesite Siderite Amrph^silica"
+        equilibrium_gases = "CO2(g)"
     []
 []
 
 [TimeDependentReactionSolver]
     model_definition = definition
     geochemistry_reactor_name = reactor
+    swap_out_of_basis = "H+"
+    swap_into_basis = "CO2(g)"
     charge_balance_species = "HCO3-"
-    constraint_species = "H2O              H+            Na+              K+               Ca++             Mg++             Fe++             Al+++            SiO2(aq)         HCO3-"
-    constraint_value = "  1.0              -6            1E-4             1E-4             1E-4             1E-4             1E-4             1E-6             1E-4             1E-8"
-    constraint_meaning = "kg_solvent_water log10activity bulk_composition bulk_composition bulk_composition bulk_composition bulk_composition bulk_composition bulk_composition bulk_composition"
+    constraint_species = "H2O              CO2(g)        Na+              K+               Ca++             Mg++             Fe++             Al+++            SiO2(aq)         HCO3-"
+    constraint_value = "  1.0              0.004         1E-4             1E-4             1E-4             1E-4             1E-4             1E-6             1E-4             1E-8"
+    constraint_meaning = "kg_solvent_water fugacity      bulk_composition bulk_composition bulk_composition bulk_composition bulk_composition bulk_composition bulk_composition bulk_composition"
     constraint_unit = "   kg               dimensionless moles            moles            moles            moles            moles            moles            moles            moles"
-    prevent_precipitation = "Calcite Magnesite Amrph^silica"
+    prevent_precipitation = "Calcite Magnesite Siderite Amrph^silica"
     ramp_max_ionic_strength_initial = 0
     initial_temperature = 100
     temperature = 100
@@ -27,7 +31,6 @@
     source_species_names = "Anorthite K-feldspar Albite Diopside Hedenbergite Greenalite Antigorite"
     source_species_rates = "0.5013    1.299      0.7709 1.038    0.3765       0.1898     0.009801"
     solver_info = true
-    mol_cutoff = 1E-20
 []
 
 [Executioner]
