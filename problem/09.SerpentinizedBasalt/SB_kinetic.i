@@ -146,10 +146,10 @@
     swap_out_of_basis = "H+"
     swap_into_basis = "CO2(g)"
     charge_balance_species = "HCO3-"
-    constraint_species = "H2O              Na+              K+               Ca++               CO2(g)        Mg++             Fe++             Al+++            SiO2(aq)         HCO3-"
-    constraint_value = "  1.0              1E-4             1E-4             1E-4               72            1E-4             1E-4             1E-6             1E-04            1E-6"
-    constraint_meaning = "kg_solvent_water bulk_composition bulk_composition free_concentration fugacity      bulk_composition bulk_composition bulk_composition bulk_composition bulk_composition"
-    constraint_unit = "   kg               moles            moles            molal              dimensionless moles            moles            moles            moles            moles"
+    constraint_species = "H2O              Na+                K+                 Ca++               CO2(g)        Mg++               Fe++               Al+++              SiO2(aq)           HCO3-"
+    constraint_value = "  0.9998523        1.168872e-05       1.032096e-07       1.899956e-03       72            7.723371e-09       1.930605e-08       5.744084e-18       1.178724e-02       3.794628e-03"
+    constraint_meaning = "kg_solvent_water free_concentration free_concentration free_concentration fugacity      free_concentration free_concentration free_concentration free_concentration bulk_composition"
+    constraint_unit = "   kg               molal              molal              molal              dimensionless molal              molal              molal              molal              moles"
     initial_temperature = 100
     temperature = 100
     kinetic_species_name = '         Anorthite K-feldspar Albite Diopside Hedenbergite Greenalite Antigorite Calcite Magnesite Siderite Amrph^silica'
@@ -168,7 +168,7 @@
   type = Transient
   [TimeStepper]
     type = FunctionDT
-    function = 'max(10, 0.1 * t)'
+    function = 'max(10, 0.2 * t)'
   []
   end_time = 8640000        # 100 day
 []

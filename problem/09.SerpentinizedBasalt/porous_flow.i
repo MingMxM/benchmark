@@ -25,31 +25,31 @@
 
 [Variables]
   [f_H]
-    initial_condition = 1e-07
+    initial_condition = 2.032646e-07
   []
   [f_Na]
-    initial_condition = 1e-06
+    initial_condition = 2.684754e-07
   []
   [f_K]
-    initial_condition = 1e-06
+    initial_condition = 4.031617e-09
   []
   [f_Ca]
-    initial_condition = 1e-06
+    initial_condition = 8.476628e-05
   []
   [f_Mg]
-    initial_condition = 1e-06
+    initial_condition = 7.723371e-09
   []
   [f_Fe]
-    initial_condition = 1e-06
+    initial_condition = 1.132426e-09
   []
   [f_Al]
-    initial_condition = 1e-06
+    initial_condition = 9.616270e-08
   []
   [f_SiO2]
-    initial_condition = 1e-06
+    initial_condition = 7.177991e-04
   []
   [f_HCO3]
-    initial_condition = 1e-06
+    initial_condition = 2.718226e-04
   []
 []
 
@@ -201,43 +201,43 @@
     type = DirichletBC
     boundary = inlet
     variable = f_Ca
-    value = 1e-06
+    value = 2.684754e-07
   []
   [inlet_K]
     type = DirichletBC
     boundary = inlet
     variable = f_K
-    value = 1e-06
+    value = 4.031617e-09
   []
   [inlet_Ca]
     type = DirichletBC
     boundary = inlet
     variable = f_Ca
-    value = 1e-06
+    value = 8.476628e-05
   []
   [inlet_Mg]
     type = DirichletBC
     boundary = inlet
     variable = f_Mg
-    value = 1e-06
+    value = 7.723371e-09
   []
   [inlet_Fe]
     type = DirichletBC
     boundary = inlet
     variable = f_Fe
-    value = 1e-06
+    value = 1.132426e-09
   []
   [inlet_Al]
     type = DirichletBC
     boundary = inlet
     variable = f_Al
-    value = 1e-06
+    value = 9.616270e-08
   []
   [inlet_SiO2]
     type = DirichletBC
     boundary = inlet
     variable = f_SiO2
-    value = 1e-06
+    value = 7.177991e-04
   []
   [inlet_HCO3]
     type = DirichletBC
@@ -340,4 +340,27 @@
 [Outputs]
   exodus = true
   csv = true
+[]
+
+[MultiApps]
+  [react]
+    type = TransientMultiApp
+    input_files = water_geochemistry.i
+    clone_master_mesh = true
+    execute_on = 'timestep_end'
+  []
+[]
+[Transfers]
+  [changes_due_to_flow]
+    type = MultiAppCopyTransfer
+    source_variable = 'rate_H2O rate_H rate_Na rate_K rate_Ca rate_Mg rate_Fe rate_Al rate_SiO2 rate_HCO3'
+    variable = 'pf_rate_H2O pf_rate_H pf_rate_Na pf_rate_K pf_rate_Ca pf_rate_Mg pf_rate_Fe pf_rate_Al pf_rate_SiO2 pf_rate_HCO3'
+    to_multi_app = react
+  []
+  [massfrac_from_geochem]
+    type = MultiAppCopyTransfer
+    source_variable = 'massfrac_H massfrac_Na massfrac_K massfrac_Ca massfrac_Mg massfrac_Fe massfrac_Al massfrac_SiO2 massfrac_HCO3'
+    variable = 'f_H f_Na f_K f_Ca f_Mg f_Fe f_Al f_SiO2 f_HCO3'
+    from_multi_app = react
+  []
 []
