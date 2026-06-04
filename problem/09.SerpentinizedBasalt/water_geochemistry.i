@@ -192,7 +192,7 @@
     type = FunctionDT
     function = 'max(500, 0.1 * t)'
   []
-  end_time = 864000        # 100 day
+  end_time = 2.4192e7    # 40 weeks in seconds
 []
 
 [AuxVariables]
@@ -482,13 +482,6 @@
     execute_on = 'timestep_end'
   []
 
-  [massfrac_H2O_auxk]
-    type = ParsedAux
-    coupled_variables = 'transported_H2O transported_mass'
-    variable = massfrac_H2O
-    expression = 'transported_H2O * 18.01801802 / transported_mass'
-    execute_on = 'timestep_end'
-  []
   [massfrac_H_auxk]
     type = ParsedAux
     coupled_variables = 'transported_H transported_mass'
@@ -550,6 +543,28 @@
     coupled_variables = 'transported_SiO2 transported_mass'
     variable = massfrac_SiO2
     expression = 'transported_SiO2 * 60.0843 / transported_mass'
+    execute_on = 'timestep_end'
+  []
+  [massfrac_H2O_auxk]
+    type = ParsedAux
+    coupled_variables = 'transported_H2O transported_mass'
+    variable = massfrac_H2O
+    expression = 'transported_H2O * 18.01801802 / transported_mass'
+    execute_on = 'timestep_end'
+  []
+
+  [fix_inlet_massfrac_H]
+    type = ConstantAux
+    variable = massfrac_H
+    boundary = inlet        # ← 只作用于inlet边界节点
+    value = 0.0007
+    execute_on = 'timestep_end'
+  []
+  [fix_inlet_massfrac_HCO3]
+    type = ConstantAux
+    variable = massfrac_HCO3
+    boundary = inlet       
+    value = 0.0423
     execute_on = 'timestep_end'
   []
 []
