@@ -366,7 +366,7 @@
 [Executioner]
   type = Transient
   solve_type = Newton
-  end_time = 8e5    # ~9.3 days in seconds (100 days = 8.64e6)
+  end_time = 2.4192e7    # 40 weeks in seconds 
   
   [TimeStepper]
     type = SolutionTimeAdaptiveDT
