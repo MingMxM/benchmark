@@ -10,6 +10,15 @@
         promoting_indices = "0.5"
         one_over_T0 = 0.003354
     []
+    [anorthite_neutral]
+        type = GeochemistryKineticRate
+        kinetic_species_name = Anorthite
+        intrinsic_rate_constant = 1e-12     # 10^-12 mol/m^2/s at 25 C
+        activation_energy = 66.525E3           # J/mol
+        area_quantity = 0.0225                 # m^2/g
+        multiply_by_mass = true
+        one_over_T0 = 0.003354
+    []
 
     [kfeldspar_acid]
         type = GeochemistryKineticRate
@@ -22,19 +31,37 @@
         promoting_indices = "0.5"
         one_over_T0 = 0.003354
     []
+    [kfeldspar_neutral]
+        type = GeochemistryKineticRate
+        kinetic_species_name = K-feldspar
+        intrinsic_rate_constant = 3.890e-13    # 10^-12.41 mol/m^2/s at 25 C
+        activation_energy = 37.99E3            # J/mol
+        area_quantity = 0.0033                 # m^2/g
+        multiply_by_mass = true
+        one_over_T0 = 0.003354
+    []
 
     [albite_acid]
         type = GeochemistryKineticRate
         kinetic_species_name = Albite
         intrinsic_rate_constant = 1.380e-9     # 10^-8.86 mol/m^2/s at 25 C
-        activation_energy = 67.83E3             # J/mol
+        activation_energy = 67.83E3            # J/mol
         area_quantity = 0.0225                 # m^2/g
         multiply_by_mass = true
         promoting_species_names = "H+"
         promoting_indices = "0.5"
         one_over_T0 = 0.003354
     []
-  
+    [albite_neutral]
+        type = GeochemistryKineticRate
+        kinetic_species_name = Albite
+        intrinsic_rate_constant = 1e-12        # 10^-12 mol/m^2/s at 25 C
+        activation_energy = 66.525E3           # J/mol
+        area_quantity = 0.0225                 # m^2/g
+        multiply_by_mass = true
+        one_over_T0 = 0.003354
+    []
+
     [diopside_acid]
         type = GeochemistryKineticRate
         kinetic_species_name = Diopside
@@ -44,6 +71,15 @@
         multiply_by_mass = true
         promoting_species_names = "H+"
         promoting_indices = "0.71"
+        one_over_T0 = 0.003354
+    []
+    [diopside_neutral]
+        type = GeochemistryKineticRate
+        kinetic_species_name = Diopside
+        intrinsic_rate_constant = 7.7625e-12   # 10^-11.11 mol/m^2/s at 25 C
+        activation_energy = 40.585E3           # J/mol
+        area_quantity = 0.0034                 # m^2/g
+        multiply_by_mass = true
         one_over_T0 = 0.003354
     []
 
@@ -58,6 +94,15 @@
         promoting_indices = "0.71"
         one_over_T0 = 0.003354
     []
+    [hedenbergite_neutral]
+        type = GeochemistryKineticRate
+        kinetic_species_name = Hedenbergite
+        intrinsic_rate_constant = 7.7625e-12   # 10^-11.11 mol/m^2/s at 25 C
+        activation_energy = 40.585E3           # J/mol
+        area_quantity = 0.0034                 # m^2/g
+        multiply_by_mass = true
+        one_over_T0 = 0.003354
+    []
 
     [greenalite_acid]
         type = GeochemistryKineticRate
@@ -68,6 +113,15 @@
         multiply_by_mass = true
         promoting_species_names = "H+"
         promoting_indices = "0.45"
+        one_over_T0 = 0.003354
+    []
+    [greenalite_neutral]
+        type = GeochemistryKineticRate
+        kinetic_species_name = Greenalite
+        intrinsic_rate_constant = 8.318e-13    # 10^-12.08 mol/m^2/s at 25 C
+        activation_energy = 56.61E3            # J/mol
+        area_quantity = 1.26                   # m^2/g
+        multiply_by_mass = true
         one_over_T0 = 0.003354
     []
 
@@ -82,16 +136,34 @@
         promoting_indices = "0.45"
         one_over_T0 = 0.003354
     []
+    [antigorite_neutral]
+        type = GeochemistryKineticRate
+        kinetic_species_name = Antigorite
+        intrinsic_rate_constant = 8.318e-13    # 10^-12.08 mol/m^2/s at 25 C
+        activation_energy = 56.61E3            # J/mol
+        area_quantity = 1.26                   # m^2/g
+        multiply_by_mass = true
+        one_over_T0 = 0.003354
+    []
 
     [calcite_acid]
         type = GeochemistryKineticRate
         kinetic_species_name = Calcite
-        intrinsic_rate_constant = 0.501187     # 10^-0.3 mol/m^2/s at 25 C
-        activation_energy = 14.403E3             # J/mol
+        intrinsic_rate_constant = 0.501187      # 10^-0.3 mol/m^2/s at 25 C
+        activation_energy = 14.403E3            # J/mol
         area_quantity = 0.0370                  # m^2/g
         multiply_by_mass = true
         promoting_species_names = "H+"
         promoting_indices = "1.0"
+        one_over_T0 = 0.003354
+    []
+    [calcite_neutral]
+        type = GeochemistryKineticRate
+        kinetic_species_name = Calcite
+        intrinsic_rate_constant = 1.5488E-6     # 10^-5.81 mol/m^2/s at 25 C
+        activation_energy = 23.514E3            # J/mol
+        area_quantity = 0.0370                  # m^2/g
+        multiply_by_mass = true
         one_over_T0 = 0.003354
     []
 
@@ -99,11 +171,20 @@
         type = GeochemistryKineticRate
         kinetic_species_name = Magnesite
         intrinsic_rate_constant = 4.1687E-7    # 10^-6.38 mol/m^2/s at 25 C
-        activation_energy = 14.403E3             # J/mol
+        activation_energy = 14.403E3           # J/mol
         area_quantity = 0.0662                 # m^2/g
         multiply_by_mass = true
         promoting_species_names = "H+"
         promoting_indices = "1.0"
+        one_over_T0 = 0.003354
+    []
+    [magnesite_neutral]
+        type = GeochemistryKineticRate
+        kinetic_species_name = Magnesite
+        intrinsic_rate_constant = 4.5709E-10   # 10^-9.34 mol/m^2/s at 25 C
+        activation_energy = 23.514E3           # J/mol
+        area_quantity = 0.0662                 # m^2/g
+        multiply_by_mass = true
         one_over_T0 = 0.003354
     []
 
@@ -116,6 +197,15 @@
         multiply_by_mass = true
         promoting_species_names = "H+"
         promoting_indices = "0.9"
+        one_over_T0 = 0.003354
+    []
+    [siderite_neutral]
+        type = GeochemistryKineticRate
+        kinetic_species_name = Siderite
+        intrinsic_rate_constant = 1.2589E-9    # 10^-8.90 mol/m^2/s at 25 C
+        activation_energy = 62.760E3           # J/mol
+        area_quantity = 0.1050                 # m^2/g
+        multiply_by_mass = true
         one_over_T0 = 0.003354
     []
 
@@ -136,7 +226,7 @@
         remove_all_extrapolated_secondary_species = true
         kinetic_minerals = "Anorthite K-feldspar Albite Diopside Hedenbergite Greenalite Antigorite Calcite Magnesite Siderite Amrph^silica"
         equilibrium_gases = "CO2(g)"
-        kinetic_rate_descriptions = "anorthite_acid kfeldspar_acid albite_acid diopside_acid hedenbergite_acid greenalite_acid antigorite_acid calcite_acid magnesite_acid siderite_acid amrphsilica_neutral"
+        kinetic_rate_descriptions = "anorthite_acid anorthite_neutral kfeldspar_acid kfeldspar_neutral albite_acid albite_neutral diopside_acid diopside_neutral hedenbergite_acid hedenbergite_neutral greenalite_acid greenalite_neutral antigorite_acid antigorite_neutral calcite_acid calcite_neutral magnesite_acid magnesite_neutral siderite_acid siderite_neutral amrphsilica_neutral"
     []
 
     [nodal_void_volume_uo]
@@ -208,6 +298,10 @@
   []
   [free_cm3_Amrphsilica]
   []
+  [free_cm3_Carbonate]
+  []
+  [Carbonate_volume_ratio]
+  []
 
 # Mass change (kg/s) at each node provided by the porous-flow simulation
   [pf_rate_H2O]
@@ -253,7 +347,7 @@
   [rate_HCO3_per_1l]
   []
 
-# Transported moel of species (moles) at each node used in geochemistry simulation
+# Transported mole of species (moles) at each node used in geochemistry simulation
   [transported_H2O]
   []
   [transported_H]
@@ -315,6 +409,22 @@
     species = 'Amrph^silica'
     quantity = free_cm3
     variable = free_cm3_Amrphsilica
+    execute_on = 'timestep_end'
+  []
+
+  [free_Carbonates_auxk]
+    type = ParsedAux
+    coupled_variables = 'free_cm3_Calcite free_cm3_Magnesite free_cm3_Siderite'
+    expression = 'free_cm3_Calcite + free_cm3_Magnesite + free_cm3_Siderite'
+    variable = free_cm3_Carbonate
+    execute_on = 'timestep_end'
+  []
+
+  [carbonates_volume_ratio_auxk]
+    type = ParsedAux
+    coupled_variables = 'free_cm3_Anorthite free_cm3_Kfeldspar free_cm3_Albite free_cm3_Diopside free_cm3_Hedenbergite free_cm3_Greenalite free_cm3_Antigorite free_cm3_Calcite free_cm3_Magnesite free_cm3_Siderite free_cm3_Amrphsilica'
+    expression = '(free_cm3_Calcite + free_cm3_Magnesite + free_cm3_Siderite)/(free_cm3_Anorthite + free_cm3_Kfeldspar + free_cm3_Albite + free_cm3_Diopside + free_cm3_Hedenbergite + free_cm3_Greenalite + free_cm3_Antigorite + free_cm3_Calcite + free_cm3_Magnesite + free_cm3_Siderite + free_cm3_Amrphsilica)'
+    variable = Carbonate_volume_ratio
     execute_on = 'timestep_end'
   []
 
