@@ -247,7 +247,7 @@
     initial_temperature = 100
     temperature = 100
     kinetic_species_name = '         Anorthite K-feldspar Albite Diopside Hedenbergite Greenalite Antigorite Calcite Magnesite Siderite Amrph^silica'
-    kinetic_species_initial_value = '0.5013    1.2999     0.7709 1.038    0.3765       0.1898     0.009801   0.001   0.001     0.001    0.001'
+    kinetic_species_initial_value = '0.5013    1.2999     0.7709 1.038    0.3765       0.1898     0.009801   1e-6    1e-6      1e-6     1e-6'
     kinetic_species_unit = '         moles     moles      moles  moles    moles        moles      moles      moles   moles     moles    moles'
     evaluate_kinetic_rates_always = true # implicit time-marching used for stability
     source_species_names = 'H2O H+ Na+ K+ Ca++ Mg++ Fe++ Al+++ SiO2(aq) HCO3-'
@@ -279,8 +279,8 @@
 [Executioner]
   type = Transient
   [TimeStepper]
-    type = FunctionDT
-    function = 'max(500, 0.1 * t)'
+    type = SolutionTimeAdaptiveDT
+    dt = 500
   []
   end_time = 2.4192e7    # 40 weeks in seconds
 []
