@@ -88,7 +88,7 @@
     geochemistry_reactor_name = reactor
     charge_balance_species = "HCO3-"
     constraint_species = "H2O              HCO3-            Ca++               Mg++               SiO2(aq)           H+"
-    constraint_value = "  1.0              6.871029e-04     1.787217e-04       1.792424e-04       3.589915e-04       2.606e-08"
+    constraint_value = "  1.000034         6.183145e-04     1.632678e-04       1.435085e-04       2.897637e-04       1.039185e-06"
     constraint_meaning = "kg_solvent_water bulk_composition free_concentration free_concentration free_concentration free_concentration"
     constraint_unit = "   kg               moles            molal              molal              molal              molal"
     initial_temperature = 100
@@ -101,7 +101,7 @@
     source_species_rates = 'rate_H2O_per_1l rate_HCO3_per_1l rate_Ca_per_1l rate_Mg_per_1l rate_SiO2_per_1l rate_H_per_1l'
     ramp_max_ionic_strength_initial = 0
     execute_console_output_on = '' # only CSV output used in this example
-    add_aux_molal = false # save some memory and reduce variables in output exodus
+    add_aux_molal = true # save some memory and reduce variables in output exodus
     add_aux_mg_per_kg = false # save some memory and reduce variables in output exodus
     add_aux_free_mg = false # save some memory and reduce variables in output exodus
     add_aux_activity = false # save some memory and reduce variables in output exodus
@@ -217,15 +217,36 @@
     type = ConstantAux
     variable = massfrac_H
     boundary = inlet
-    value = 0.0007
-    execute_on = 'timestep_end'
+    value = 0.0008428
+    execute_on = 'initial timestep_end'
   []
   [massfrac_HCO3_inlet]
     type = ConstantAux
     variable = massfrac_HCO3
     boundary = inlet
-    value = 0.0423
-    execute_on = 'timestep_end'
+    value = 0.0510
+    execute_on = 'initial timestep_end'
+  []
+  [massfrac_Ca_inlet]
+    type = ConstantAux
+    variable = massfrac_Ca
+    boundary = inlet
+    value = 0
+    execute_on = 'initial timestep_end'
+  []
+  [massfrac_Mg_inlet]
+    type = ConstantAux
+    variable = massfrac_Mg
+    boundary = inlet
+    value = 0
+    execute_on = 'initial timestep_end'
+  []
+  [massfrac_SiO2_inlet]
+    type = ConstantAux
+    variable = massfrac_SiO2
+    boundary = inlet
+    value = 0
+    execute_on = 'initial timestep_end'
   []
 
   [rate_H2O_per_1l_auxk]
@@ -380,29 +401,83 @@
     variable = pH
   []
 
+  [kg_solvent_water]
+    type = PointValue
+    variable = kg_solvent_H2O
+    execute_on = 'initial timestep_end'
+  []
+  [molal_Ca]
+    type = PointValue
+    point = '0 0 0'
+    variable = 'molal_Ca++'
+    execute_on = 'initial timestep_end'
+  []
+  [molal_Mg]
+    type = PointValue
+    point = '0 0 0'
+    variable = 'molal_Mg++'
+    execute_on = 'initial timestep_end'
+  []
+  [molal_SiO2]
+    type = PointValue
+    point = '0 0 0'
+    variable = 'molal_SiO2(aq)'
+    execute_on = 'initial timestep_end'
+  []
+  [molal_H]
+    type = PointValue
+    point = '0 0 0'
+    variable = 'molal_H+'
+    execute_on = 'initial timestep_end'
+  []
+  [molal_HCO3]
+    type = PointValue
+    point = '0 0 0'
+    variable = 'molal_HCO3-'
+    execute_on = 'initial timestep_end'
+  []
+  [molal_CO3]
+    type = PointValue
+    point = '0 0 0'
+    variable = 'molal_CO3--'
+    execute_on = 'initial timestep_end'
+  []
+  [molal_CO2aq]
+    type = PointValue
+    point = '0 0 0'
+    variable = 'molal_CO2(aq)'
+    execute_on = 'initial timestep_end'
+  []
+
   [massfrac_H2O]
     type = PointValue
     variable = massfrac_H2O
+    execute_on = 'initial timestep_end'
   []
   [massfrac_HCO3]
     type = PointValue
     variable = massfrac_HCO3
+    execute_on = 'initial timestep_end'
   []
   [massfrac_Ca]
     type = PointValue
     variable = massfrac_Ca
+    execute_on = 'initial timestep_end'
   []
   [massfrac_Mg]
     type = PointValue
     variable = massfrac_Mg
+    execute_on = 'initial timestep_end'
   []
   [massfrac_SiO2]
     type = PointValue
     variable = massfrac_SiO2
+    execute_on = 'initial timestep_end'
   []
   [massfrac_H]
     type = PointValue
     variable = massfrac_H
+    execute_on = 'initial timestep_end'
   []
 
   [cm3_Diopside]

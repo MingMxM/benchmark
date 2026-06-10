@@ -103,7 +103,7 @@
     remove_fixed_activity_time = 501
     ramp_max_ionic_strength_initial = 0
     execute_console_output_on = '' # only CSV output used in this example
-    add_aux_molal = false # save some memory and reduce variables in output exodus
+    # add_aux_molal = false # save some memory and reduce variables in output exodus
     add_aux_mg_per_kg = false # save some memory and reduce variables in output exodus
     add_aux_free_mg = false # save some memory and reduce variables in output exodus
     add_aux_activity = false # save some memory and reduce variables in output exodus
@@ -219,15 +219,36 @@
     type = ConstantAux
     variable = massfrac_H
     boundary = inlet
-    value = 0.0007
-    execute_on = 'timestep_end'
+    value = 0.0008428
+    execute_on = 'initial timestep_end'
   []
   [massfrac_HCO3_inlet]
     type = ConstantAux
     variable = massfrac_HCO3
     boundary = inlet
-    value = 0.0423
-    execute_on = 'timestep_end'
+    value = 0.0510
+    execute_on = 'initial timestep_end'
+  []
+  [massfrac_Ca_inlet]
+    type = ConstantAux
+    variable = massfrac_Ca
+    boundary = inlet
+    value = 0
+    execute_on = 'initial timestep_end'
+  []
+  [massfrac_Mg_inlet]
+    type = ConstantAux
+    variable = massfrac_Mg
+    boundary = inlet
+    value = 0
+    execute_on = 'initial timestep_end'
+  []
+  [massfrac_SiO2_inlet]
+    type = ConstantAux
+    variable = massfrac_SiO2
+    boundary = inlet
+    value = 0
+    execute_on = 'initial timestep_end'
   []
 
   [rate_H2O_per_1l_auxk]
@@ -380,6 +401,41 @@
   [pH]
     type = PointValue
     variable = pH
+  []
+
+  [kg_solvent_water]
+    type = PointValue
+    variable = kg_solvent_H2O
+  []
+  [molal_Ca]
+    type = PointValue
+    point = '0 0 0'
+    variable = 'molal_Ca++'
+  []
+  [molal_Mg]
+    type = PointValue
+    point = '0 0 0'
+    variable = 'molal_Mg++'
+  []
+  [molal_SiO2]
+    type = PointValue
+    point = '0 0 0'
+    variable = 'molal_SiO2(aq)'
+  []
+  [molal_H]
+    type = PointValue
+    point = '0 0 0'
+    variable = 'molal_H+'
+  []
+  [molal_HCO3]
+    type = PointValue
+    point = '0 0 0'
+    variable = 'molal_HCO3-'
+  []
+  [molal_CO3]
+    type = PointValue
+    point = '0 0 0'
+    variable = 'molal_CO3--'
   []
 
   [massfrac_H2O]

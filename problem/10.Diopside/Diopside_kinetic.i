@@ -7,46 +7,74 @@
     [diopside_acid]
         type = GeochemistryKineticRate
         kinetic_species_name = Diopside
-        intrinsic_rate_constant = 4.365e-7     # 10^-11.11 mol/m^2/s at 25 C
+        intrinsic_rate_constant = 4.365e-7     # 10^-6.36 mol/m^2/s at 25 C
         activation_energy = 96.1E3             # J/mol
-        area_quantity = 0.0017                 # m^2/g
+        area_quantity = 0.0034                 # m^2/g
         multiply_by_mass = true
         promoting_species_names = "H+"
         promoting_indices = "0.71"
+        one_over_T0 = 0.003354
+    []
+    [diopside_neutral]
+        type = GeochemistryKineticRate
+        kinetic_species_name = Diopside
+        intrinsic_rate_constant = 7.7625e-12   # 10^-11.11 mol/m^2/s at 25 C
+        activation_energy = 40.585E3           # J/mol
+        area_quantity = 0.0034                 # m^2/g
+        multiply_by_mass = true
         one_over_T0 = 0.003354
     []
 
     [calcite_acid]
         type = GeochemistryKineticRate
         kinetic_species_name = Calcite
-        intrinsic_rate_constant = 0.501187     # 10^-5.81 mol/m^2/s at 25 C
-        activation_energy = 14.4E3             # J/mol
-        area_quantity = 0.037                  # m^2/g
+        intrinsic_rate_constant = 0.501187      # 10^-0.3 mol/m^2/s at 25 C
+        activation_energy = 14.403E3            # J/mol
+        area_quantity = 0.0370                  # m^2/g
         multiply_by_mass = true
         promoting_species_names = "H+"
         promoting_indices = "1.0"
+        one_over_T0 = 0.003354
+    []
+    [calcite_neutral]
+        type = GeochemistryKineticRate
+        kinetic_species_name = Calcite
+        intrinsic_rate_constant = 1.5488E-6     # 10^-5.81 mol/m^2/s at 25 C
+        activation_energy = 23.514E3            # J/mol
+        area_quantity = 0.0370                  # m^2/g
+        multiply_by_mass = true
         one_over_T0 = 0.003354
     []
 
     [magnesite_acid]
         type = GeochemistryKineticRate
         kinetic_species_name = Magnesite
-        intrinsic_rate_constant = 4.1687E-7    # 10^-9.34 mol/m^2/s at 25 C
-        activation_energy = 14.4E3             # J/mol
+        intrinsic_rate_constant = 4.1687E-7    # 10^-6.38 mol/m^2/s at 25 C
+        activation_energy = 14.403E3           # J/mol
         area_quantity = 0.0662                 # m^2/g
         multiply_by_mass = true
         promoting_species_names = "H+"
         promoting_indices = "1.0"
         one_over_T0 = 0.003354
     []
+    [magnesite_neutral]
+        type = GeochemistryKineticRate
+        kinetic_species_name = Magnesite
+        intrinsic_rate_constant = 4.5709E-10   # 10^-9.34 mol/m^2/s at 25 C
+        activation_energy = 23.514E3           # J/mol
+        area_quantity = 0.0662                 # m^2/g
+        multiply_by_mass = true
+        one_over_T0 = 0.003354
+    []
 
     [definition]
         type = GeochemicalModelDefinition
         database_file = "../../database/moose_geochemdb.json"
-        basis_species = "H2O H+ Ca++ Mg++ SiO2(aq) HCO3-"
+        basis_species = "H2O HCO3- Ca++ Mg++ SiO2(aq) H+"
+        remove_all_extrapolated_secondary_species = true
         kinetic_minerals = "Diopside Calcite Magnesite"
         equilibrium_gases = "CO2(g)"
-        kinetic_rate_descriptions = "diopside_acid calcite_acid magnesite_acid"
+        kinetic_rate_descriptions = "diopside_acid diopside_neutral calcite_acid calcite_neutral magnesite_acid magnesite_neutral"
     []
   []
 
@@ -57,7 +85,7 @@
     swap_into_basis = "CO2(g)"
     charge_balance_species = "H+"
     constraint_species = "H2O              Ca++               CO2(g)        Mg++               SiO2(aq)           H+"
-    constraint_value = "  1.0              1.787217e-04       72            1.792424e-04       3.589915e-04       4.213e-06"
+    constraint_value = "  1.0              1.787217e-04       81            1.792424e-04       3.589915e-04       4.213e-06"
     constraint_meaning = "kg_solvent_water free_concentration fugacity      free_concentration free_concentration bulk_composition"
     constraint_unit = "   kg               molal              dimensionless molal              molal              moles"
     initial_temperature = 100

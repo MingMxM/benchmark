@@ -7,20 +7,21 @@
         type = GeochemicalModelDefinition
         database_file = "../../database/moose_geochemdb.json"
         basis_species = "H2O H+ Ca++ Mg++ SiO2(aq) HCO3-"
+        remove_all_extrapolated_secondary_species = true
         equilibrium_minerals = "Diopside Calcite Magnesite"
-        equilibrium_gases = "CO2(g)"
+        # equilibrium_gases = "CO2(g)"
     []
 []
 
 [TimeIndependentReactionSolver]
     model_definition = definition
     geochemistry_reactor_name = reactor
-    swap_out_of_basis = "Ca++ HCO3-"
-    swap_into_basis = "Diopside CO2(g)"
-    charge_balance_species = "H+"
-    constraint_species = "H2O              Diopside     CO2(g)        Mg++             SiO2(aq)         H+"
-    constraint_value = "  1.0              6.776        4E-3          1E-8             1E-8             1E-7"
-    constraint_meaning = "kg_solvent_water free_mineral fugacity      bulk_composition bulk_composition bulk_composition"
+    swap_out_of_basis = "Ca++"
+    swap_into_basis = "Diopside"
+    charge_balance_species = "HCO3-"
+    constraint_species = "H2O              Diopside     H+            Mg++             SiO2(aq)         HCO3-"
+    constraint_value = "  1.0              6.776        -6            1E-8             1E-8             1E-8"
+    constraint_meaning = "kg_solvent_water free_mineral log10activity bulk_composition bulk_composition bulk_composition"
     constraint_unit = "   kg               moles        dimensionless moles            moles            moles"
     prevent_precipitation = "Calcite Magnesite"
     ramp_max_ionic_strength_initial = 0

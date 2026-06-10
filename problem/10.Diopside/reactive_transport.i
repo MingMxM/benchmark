@@ -25,19 +25,19 @@
 
 [Variables]
   [f_HCO3]
-    initial_condition = 1.031139e-07
+    initial_condition = 1.354681e-04
   []
   [f_Ca]
-    initial_condition = 4.008000e-10
+    initial_condition = 6.668891e-06
   []
   [f_Mg]
-    initial_condition = 2.430500e-10
+    initial_condition = 3.523492e-06
   []
   [f_SiO2]
-    initial_condition = 6.008430e-10
+    initial_condition = 1.741921e-05
   []
   [f_H]
-    initial_condition = 1.662951e-09
+    initial_condition = 1.610067e-06
   []
 []
 
@@ -237,7 +237,7 @@
   [diffusion_coefficient]
     type = PorousFlowDiffusivityConst
     # 7.5e-9 m2/s for all 6 components (5 solutes + H2O)
-    diffusion_coeff = '7.5e-8 7.5e-8 7.5e-8 7.5e-8 7.5e-8 7.5e-8'
+    diffusion_coeff = '7.5e-9 7.5e-9 7.5e-9 7.5e-9 7.5e-9 7.5e-9'
     tortuosity = 1
   []
   [relp]
