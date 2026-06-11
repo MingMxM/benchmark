@@ -159,7 +159,7 @@
     type = DirichletBC
     boundary = inlet
     variable = f_HCO3
-    value = 0.510       # high HCO3- for CO2-rich water
+    value = 0.0510       # high HCO3- for CO2-rich water
   []
   [inlet_Ca]
     type = DirichletBC
@@ -183,7 +183,7 @@
     type = DirichletBC
     boundary = inlet
     variable = f_H
-    value = 0.0165      # high H+ for CO2-rich water (low pH)
+    value = 0.0008      # high H+ for CO2-rich water (low pH)
   []
 []
 
@@ -273,7 +273,11 @@
     dt = 500
   []
 
-  nl_rel_tol = 1e-7
+  fixed_point_max_its = 10
+  nl_rel_tol = 1e-8
+  nl_abs_tol = 1e-9
+  fixed_point_rel_tol = 1e-8
+  fixed_point_abs_tol = 1e-9
 []
 
 [Outputs]
@@ -284,7 +288,8 @@
   [react]
     type = TransientMultiApp
     input_files = water_geochemistry.i
-    clone_master_mesh = true
+    clone_parent_mesh = true
+    sub_cycling = true
     execute_on = 'timestep_end'
   []
 []
