@@ -265,19 +265,13 @@
 
 [Executioner]
   type = Transient
-  solve_type = Newton
+  solve_type = NEWTON
   end_time = 2.4192e7    # 40 weeks in seconds
 
   [TimeStepper]
     type = SolutionTimeAdaptiveDT
     dt = 500
   []
-
-  fixed_point_max_its = 10
-  nl_rel_tol = 1e-8
-  nl_abs_tol = 1e-9
-  fixed_point_rel_tol = 1e-8
-  fixed_point_abs_tol = 1e-9
 []
 
 [Outputs]
@@ -289,7 +283,6 @@
     type = TransientMultiApp
     input_files = water_geochemistry.i
     clone_parent_mesh = true
-    sub_cycling = true
     execute_on = 'timestep_end'
   []
 []
