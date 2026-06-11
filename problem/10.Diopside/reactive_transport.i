@@ -159,7 +159,7 @@
     type = DirichletBC
     boundary = inlet
     variable = f_HCO3
-    value = 0.0510       # high HCO3- for CO2-rich water
+    value = 0.510       # high HCO3- for CO2-rich water
   []
   [inlet_Ca]
     type = DirichletBC
@@ -183,7 +183,7 @@
     type = DirichletBC
     boundary = inlet
     variable = f_H
-    value = 0.0008428      # high H+ for CO2-rich water (low pH)
+    value = 0.0165      # high H+ for CO2-rich water (low pH)
   []
 []
 

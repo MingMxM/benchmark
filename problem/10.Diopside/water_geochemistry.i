@@ -213,41 +213,41 @@
     execute_on = 'initial timestep_end' # "initial" to ensure it is properly evaluated for the first timestep
   []
 
-  [massfrac_H_inlet]
-    type = ConstantAux
-    variable = massfrac_H
-    boundary = inlet
-    value = 0.0008428
-    execute_on = 'initial timestep_end'
-  []
-  [massfrac_HCO3_inlet]
-    type = ConstantAux
-    variable = massfrac_HCO3
-    boundary = inlet
-    value = 0.0510
-    execute_on = 'initial timestep_end'
-  []
-  [massfrac_Ca_inlet]
-    type = ConstantAux
-    variable = massfrac_Ca
-    boundary = inlet
-    value = 0
-    execute_on = 'initial timestep_end'
-  []
-  [massfrac_Mg_inlet]
-    type = ConstantAux
-    variable = massfrac_Mg
-    boundary = inlet
-    value = 0
-    execute_on = 'initial timestep_end'
-  []
-  [massfrac_SiO2_inlet]
-    type = ConstantAux
-    variable = massfrac_SiO2
-    boundary = inlet
-    value = 0
-    execute_on = 'initial timestep_end'
-  []
+  # [massfrac_H_inlet]
+  #   type = ConstantAux
+  #   variable = massfrac_H
+  #   boundary = inlet
+  #   value = 0.0008428
+  #   execute_on = 'initial timestep_end'
+  # []
+  # [massfrac_HCO3_inlet]
+  #   type = ConstantAux
+  #   variable = massfrac_HCO3
+  #   boundary = inlet
+  #   value = 0.0510
+  #   execute_on = 'initial timestep_end'
+  # []
+  # [massfrac_Ca_inlet]
+  #   type = ConstantAux
+  #   variable = massfrac_Ca
+  #   boundary = inlet
+  #   value = 0
+  #   execute_on = 'initial timestep_end'
+  # []
+  # [massfrac_Mg_inlet]
+  #   type = ConstantAux
+  #   variable = massfrac_Mg
+  #   boundary = inlet
+  #   value = 0
+  #   execute_on = 'initial timestep_end'
+  # []
+  # [massfrac_SiO2_inlet]
+  #   type = ConstantAux
+  #   variable = massfrac_SiO2
+  #   boundary = inlet
+  #   value = 0
+  #   execute_on = 'initial timestep_end'
+  # []
 
   [rate_H2O_per_1l_auxk]
     type = ParsedAux

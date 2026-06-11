@@ -100,6 +100,7 @@
 
 [GlobalParams]
   point = '0 0 0'
+  reactor = reactor
 []
 
 [Executioner]
@@ -112,7 +113,35 @@
 []
 
 [AuxVariables]
-    [mole_change_Diopside]  []
+  [mole_change_Diopside]  []
+
+  [transported_H2O]
+  []
+  [transported_HCO3]
+  []
+  [transported_Ca]
+  []
+  [transported_Mg]
+  []
+  [transported_SiO2]
+  []
+  [transported_H]
+  []
+  [transported_mass]
+  []
+
+  [massfrac_H2O]
+  []
+  [massfrac_HCO3]
+  []
+  [massfrac_Ca]
+  []
+  [massfrac_Mg]
+  []
+  [massfrac_SiO2]
+  []
+  [massfrac_H]
+  []
 []
 
 [AuxKernels]
@@ -121,6 +150,98 @@
     coupled_variables = moles_Diopside
     expression = '4.61815697 - moles_Diopside'
     variable = mole_change_Diopside
+  []
+  [transported_H2O_auxk]
+    type = GeochemistryQuantityAux
+    variable = transported_H2O
+    species = 'H2O'
+    quantity = transported_moles_in_original_basis
+    execute_on = 'timestep_begin'
+  []
+  [transported_HCO3_auxk]
+    type = GeochemistryQuantityAux
+    variable = transported_HCO3
+    species = 'HCO3-'
+    quantity = transported_moles_in_original_basis
+    execute_on = 'timestep_begin'
+  []
+  [transported_Ca_auxk]
+    type = GeochemistryQuantityAux
+    variable = transported_Ca
+    species = 'Ca++'
+    quantity = transported_moles_in_original_basis
+    execute_on = 'timestep_begin'
+  []
+  [transported_Mg_auxk]
+    type = GeochemistryQuantityAux
+    variable = transported_Mg
+    species = 'Mg++'
+    quantity = transported_moles_in_original_basis
+    execute_on = 'timestep_begin'
+  []
+  [transported_SiO2_auxk]
+    type = GeochemistryQuantityAux
+    variable = transported_SiO2
+    species = 'SiO2(aq)'
+    quantity = transported_moles_in_original_basis
+    execute_on = 'timestep_begin'
+  []
+  [transported_H_auxk]
+    type = GeochemistryQuantityAux
+    variable = transported_H
+    species = 'H+'
+    quantity = transported_moles_in_original_basis
+    execute_on = 'timestep_begin'
+  []
+  [transported_mass_auxk]
+    type = ParsedAux
+    coupled_variables = 'transported_H2O transported_HCO3 transported_Ca transported_Mg transported_SiO2 transported_H'
+    variable = transported_mass
+    expression = 'transported_H * 1.0079 + transported_HCO3 * 61.0171 + transported_SiO2 * 60.0843 + transported_Ca * 40.08 + transported_Mg * 24.305 + transported_H2O * 18.01801802'
+    execute_on = 'timestep_end'
+  []
+
+  [massfrac_H2O_auxk]
+    type = ParsedAux
+    coupled_variables = 'transported_H2O transported_mass'
+    variable = massfrac_H2O
+    expression = 'transported_H2O * 18.01801802 / transported_mass'
+    execute_on = 'timestep_end'
+  []
+  [massfrac_HCO3_auxk]
+    type = ParsedAux
+    coupled_variables = 'transported_HCO3 transported_mass'
+    variable = massfrac_HCO3
+    expression = 'transported_HCO3 * 61.0171 / transported_mass'
+    execute_on = 'timestep_end'
+  []
+  [massfrac_Ca_auxk]
+    type = ParsedAux
+    coupled_variables = 'transported_Ca transported_mass'
+    variable = massfrac_Ca
+    expression = 'transported_Ca * 40.08 / transported_mass'
+    execute_on = 'timestep_end'
+  []
+  [massfrac_Mg_auxk]
+    type = ParsedAux
+    coupled_variables = 'transported_Mg transported_mass'
+    variable = massfrac_Mg
+    expression = 'transported_Mg * 24.305 / transported_mass'
+    execute_on = 'timestep_end'
+  []
+  [massfrac_SiO2_auxk]
+    type = ParsedAux
+    coupled_variables = 'transported_SiO2 transported_mass'
+    variable = massfrac_SiO2
+    expression = 'transported_SiO2 * 60.0843 / transported_mass'
+    execute_on = 'timestep_end'
+  []
+  [massfrac_H_auxk]
+    type = ParsedAux
+    coupled_variables = 'transported_H transported_mass'
+    variable = massfrac_H
+    expression = 'transported_H * 1.0079 / transported_mass'
+    execute_on = 'timestep_end'
   []
 []
 
@@ -178,6 +299,38 @@
     point = '0 0 0'
     variable = 'molal_CO2(aq)'
   []
+
+  [massfrac_H2O]
+    type = PointValue
+    variable = massfrac_H2O
+    execute_on = 'initial timestep_end'
+  []
+  [massfrac_HCO3]
+    type = PointValue
+    variable = massfrac_HCO3
+    execute_on = 'initial timestep_end'
+  []
+  [massfrac_Ca]
+    type = PointValue
+    variable = massfrac_Ca
+    execute_on = 'initial timestep_end'
+  []
+  [massfrac_Mg]
+    type = PointValue
+    variable = massfrac_Mg
+    execute_on = 'initial timestep_end'
+  []
+  [massfrac_SiO2]
+    type = PointValue
+    variable = massfrac_SiO2
+    execute_on = 'initial timestep_end'
+  []
+  [massfrac_H]
+    type = PointValue
+    variable = massfrac_H
+    execute_on = 'initial timestep_end'
+  []
+
   [mass_change_Calcite]
     type = PointValue
     point = '0 0 0'
