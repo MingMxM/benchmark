@@ -266,12 +266,18 @@
 [Executioner]
   type = Transient
   solve_type = NEWTON
-  end_time = 2.4192e7    # 40 weeks in seconds
+  # end_time = 2.4192e7    # 40 weeks in seconds
+  end_time = 3600
+
+  # fixed_point_algorithm = PICARD
+  # fixed_point_max_its = 10
+  # fixed_point_rel_tol = 1e-7
 
   [TimeStepper]
     type = SolutionTimeAdaptiveDT
-    dt = 500
+    dt = 5
   []
+
 []
 
 [Outputs]

@@ -297,42 +297,42 @@
     variable = transported_H2O
     species = 'H2O'
     quantity = transported_moles_in_original_basis
-    execute_on = 'timestep_begin'
+    execute_on = 'timestep_end'
   []
   [transported_HCO3_auxk]
     type = GeochemistryQuantityAux
     variable = transported_HCO3
     species = 'HCO3-'
     quantity = transported_moles_in_original_basis
-    execute_on = 'timestep_begin'
+    execute_on = 'timestep_end'
   []
   [transported_Ca_auxk]
     type = GeochemistryQuantityAux
     variable = transported_Ca
     species = 'Ca++'
     quantity = transported_moles_in_original_basis
-    execute_on = 'timestep_begin'
+    execute_on = 'timestep_end'
   []
   [transported_Mg_auxk]
     type = GeochemistryQuantityAux
     variable = transported_Mg
     species = 'Mg++'
     quantity = transported_moles_in_original_basis
-    execute_on = 'timestep_begin'
+    execute_on = 'timestep_end'
   []
   [transported_SiO2_auxk]
     type = GeochemistryQuantityAux
     variable = transported_SiO2
     species = 'SiO2(aq)'
     quantity = transported_moles_in_original_basis
-    execute_on = 'timestep_begin'
+    execute_on = 'timestep_end'
   []
   [transported_H_auxk]
     type = GeochemistryQuantityAux
     variable = transported_H
     species = 'H+'
     quantity = transported_moles_in_original_basis
-    execute_on = 'timestep_begin'
+    execute_on = 'timestep_end'
   []
   [transported_mass_auxk]
     type = ParsedAux
