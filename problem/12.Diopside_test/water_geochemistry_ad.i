@@ -87,10 +87,10 @@
     model_definition = definition
     geochemistry_reactor_name = reactor
     charge_balance_species = "HCO3-"
-    constraint_species = "H2O              HCO3-            Ca++             Mg++             SiO2(aq)         H+"
-    constraint_value = "  1.000034         1e-9             1e-09            1e-09            1e-09            1e-7"
-    constraint_meaning = "kg_solvent_water bulk_composition bulk_composition bulk_composition bulk_composition bulk_composition"
-    constraint_unit = "   kg               moles            moles            moles            moles            moles"
+    constraint_species = "H2O              HCO3-            Ca++               Mg++               SiO2(aq)           H+"
+    constraint_value = "  1.000034         6.183145e-04     1.632678e-04       1.435085e-04       2.897637e-04       1.039185e-06"
+    constraint_meaning = "kg_solvent_water bulk_composition free_concentration free_concentration free_concentration free_concentration"
+    constraint_unit = "   kg               moles            molal              molal              molal              molal"
     initial_temperature = 100
     temperature = 100
     kinetic_species_name = '         Diopside Calcite Magnesite'
@@ -126,12 +126,13 @@
   type = Transient
   # [TimeStepper]
   #   type = FunctionDT
-  #   function = 'max(100, 0.1 * t)'
+  #   function = 'max(500, 0.1 * t)'
   # []
-  # end_time = 2.4192e7    # 40 weeks in seconds
+  # end_time = 2.4192e7    # 40 weeks in seconds'
 
-  dt = 200
+  dt = 5000
   end_time = 864000
+
 []
 
 [AuxVariables]
